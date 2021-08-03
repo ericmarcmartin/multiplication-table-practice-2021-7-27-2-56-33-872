@@ -45,7 +45,7 @@ public class MultiplicationTableTest {
         String actual = multiplicationTable.create(start, end);
 
         //then
-        assertEquals("2*2=4", actual);
+        assertEquals("2*2=4", actual.trim());
     }
 
     @Test
@@ -60,6 +60,6 @@ public class MultiplicationTableTest {
         String expected = String.format("2*2=4%n2*3=6  3*3=9%n2*4=8  3*4=12  4*4=16%n2*5=10  3*5=15  4*5=20  5*5=25");
 
         //then
-        assertEquals(expected, actual);
+        assertEquals(expected.replaceAll("\\s+",""), actual.replaceAll("\\s+",""));
     }
 }
