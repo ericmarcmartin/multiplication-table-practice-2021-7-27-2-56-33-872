@@ -2,13 +2,12 @@ package com.tw;
 
 public class MultiplicationTable {
     public String create(int startNumber, int endNumber) {
-        String multiplicationTable = "";
+        String multiplicationTable;
         if (isValid(isNumberInRange(startNumber, endNumber), isEndBiggerThanStart(startNumber, endNumber))) {
             multiplicationTable = generateMultiplicationTable(startNumber, endNumber);
         } else {
             return null;
         }
-        System.out.println(multiplicationTable);
         return multiplicationTable;
     }
 
@@ -22,7 +21,7 @@ public class MultiplicationTable {
         int multiplicationLine = startNumber;
         for (int i = startNumber; i <= endNumber; i++) {
             multiplicationTable = generateMultiplicationExpression(startNumber, multiplicationTable, multiplicationLine, i);
-            if (multiplicationLine <= endNumber) {
+            if (multiplicationLine < endNumber) {
                 multiplicationLine++;
                 multiplicationTable = multiplicationTable.concat(System.lineSeparator());
             }
@@ -32,7 +31,10 @@ public class MultiplicationTable {
 
     private static String generateMultiplicationExpression(int startNumber, String multiplicationTable, int multiplicationLine, int i) {
         for (int j = startNumber; j <= multiplicationLine; j++) {
-            multiplicationTable = multiplicationTable.concat(j + "*" + i + "=" + (j * i) + "  ");
+            multiplicationTable = multiplicationTable.concat(j + "*" + i + "=" + (j * i));
+            if(!(j >=multiplicationLine)){
+                multiplicationTable=multiplicationTable.concat("  ");
+            }
         }
         return multiplicationTable;
     }
